@@ -43,7 +43,7 @@ app.post("/api/friends", function(request, response){
     //--take in form submisssions
     var userObj = request.body;
     var userScores = userObj.scores;
-    //console.log("user scores:", userScores)
+    console.log("User scores:", userScores)
 
     //--compare the form submission to the friends already in the array
     //find the difference in score for all friends...
@@ -51,7 +51,7 @@ app.post("/api/friends", function(request, response){
     for (var i = 0; i < friendsData.length; i++){ //loop through all the friends
         var friendScores = friendsData[i].scores;
         var totalDifference = 0;
-        //console.log(friendsData[i].name, friendScores)
+        console.log(friendsData[i].name, friendScores)
         for (var j = 0; j < friendScores.length; j++){  //for each friend, loop through all scores 
             var scoreDifference = Math.abs(friendScores[j] - userScores[j]);  //find the difference 
             totalDifference += scoreDifference; //add the difference to a running total 
@@ -59,14 +59,21 @@ app.post("/api/friends", function(request, response){
         allDifferences.push(totalDifference);  //push the total difference to the differences array 
     };
     //find the index of the friend with the smallest difference...
-    var friendMatchIndex = 0;  //this will hold the index of the friend with best match
-    //console.log("All differences:", allDifferences)
-    for (var i = 0; i < allDifferences.length; i++){ //loop through all the differences 
-        
-    }
-
+    var friendMatchIndex = 0;  //this will hold the index of the friend with best match, start with friend[0]
+    var friendMatchDifference = allDifferences[0]; //this will hold the difference for the friend with best match, start with difference of friend[0]
+    console.log("All differences:", allDifferences)
+    for (var i = 1; i < allDifferences.length; i++){ //loop through all the differences, starting with the second
+        //update friendMatchIndex & FriendMatchDifference as appropriate...
+        if (allDifferences[i] < friendMatchDifference){
+            friendMatchIndex = i;
+            friendMatchDifference = allDifferences[i];
+        };
+    };
 
     //--display a modal with the closest match
+    console.log("User's closest friend is:", friendsData[friendMatchIndex].name);
+    console.log("User's friend's picture is available at:", friendsData[friendMatchIndex].photo);
+    console.log("User's total difference from friend is:", friendMatchDifference);
 
     //--add the form submission to the friends array
     friendsData.push(userObj);
