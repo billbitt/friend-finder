@@ -1,6 +1,6 @@
-var express = require("express"); //needs npm install 
-var bodyParser = require("body-parser");  //needs npm install
-var path = require('path');  //built in to node
+var express = require("express"); //note: needs npm install 
+var bodyParser = require("body-parser");  //note: needs npm install
+var path = require('path');  //note: built in to node
 
 var friendsData = require('./friends');
 
@@ -39,7 +39,6 @@ app.get("/api/friends", function(request, response){
 
 app.post("/api/friends", function(request, response){
     console.log("server hit with 'post' on '/api/friends'");
-    response.send('Your request has been received by the server');
     //--take in form submisssions
     var userObj = request.body;
     var userScores = userObj.scores;
@@ -77,6 +76,9 @@ app.post("/api/friends", function(request, response){
 
     //--add the form submission to the friends array
     friendsData.push(userObj);
+
+    //--send a response back to the client 
+    response.send('Your request has been received by the server');
 })
 
 //open port to listen 
