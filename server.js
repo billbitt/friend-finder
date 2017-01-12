@@ -17,7 +17,7 @@ app.use(bodyParser.json({type: "application/vnd.api+json"}));
 app.use(express.static("public"));  //what does this do?
 //app.use(express.static("data")); 
 
-//Server Routes
+//html routes
 //...
 app.get("/", function (request, response){
     console.log("server hit on '/'");
@@ -29,7 +29,7 @@ app.get("/survey", function (request, response){
     response.sendFile(path.join(__dirname, "./app/public/survey.html"))
 });
 
-//api Routes
+//api routes
 //...
 app.get("/api/friends", function(request, response){
     console.log("server hit with 'get' on '/api/friends'");
@@ -79,7 +79,12 @@ app.post("/api/friends", function(request, response){
     friendsData.push(userObj);
 
     //--send a response back to the client 
-    response.send('Your request has been received by the server');
+    var responseObject = {
+        "status": "Your request has been received by the server",
+        "name": friendsData[friendMatchIndex].name,
+        "photoUrl": friendsData[friendMatchIndex].photo
+    }
+    response.json(responseObject);
 })
 
 //open port to listen 
