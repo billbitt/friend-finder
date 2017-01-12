@@ -160,16 +160,16 @@
     <script type="text/javascript">
         $("#submitBtn").on("click", function() {
             var userSurveyScores = [
-                $("#question1").val(),
-                $("#question2").val(),
-                $("#question3").val(),
-                $("#question4").val(),
-                $("#question5").val(),
-                $("#question6").val(),
-                $("#question7").val(),
-                $("#question8").val(),
-                $("#question9").val(),
-                $("#question0").val()
+                parseInt($("#question1").val()),
+                parseInt($("#question2").val()),
+                parseInt($("#question3").val()),
+                parseInt($("#question4").val()),
+                parseInt($("#question5").val()),
+                parseInt($("#question6").val()),
+                parseInt($("#question7").val()),
+                parseInt($("#question8").val()),
+                parseInt($("#question9").val()),
+                parseInt($("#question10").val())
             ]
             
             var userData = {
@@ -178,11 +178,13 @@
                 scores: userSurveyScores
             };
 
+            console.log("userData to send:", userData);
+
             $.post("http://localhost:3000/api/friends", userData)
             .done(function(response) {
                 console.log("User data sent to server");
                 console.log(response);
-            });
+            });           
             
             //reset all the data fields
             $("#name").val("");
@@ -198,9 +200,7 @@
             $("#question7").val("");
             $("#question8").val("");
             $("#question9").val("");
-            $("#question0").val("");
-
-            alert("Thank you for your submission");
+            $("#question10").val("");
             
             return false; //don't reload the page
         });

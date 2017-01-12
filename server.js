@@ -41,6 +41,7 @@ app.post("/api/friends", function(request, response){
     console.log("server hit with 'post' on '/api/friends'");
     //--take in form submisssions
     var userObj = request.body;
+    console.log(userObj);
     var userScores = userObj.scores;
     console.log("User scores:", userScores)
 
