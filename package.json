@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/billbitt/friend-finder.git"
   },
-  "author": "",
+  "author": "Bill Bittner",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/billbitt/friend-finder/issues"
