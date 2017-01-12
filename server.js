@@ -1,8 +1,10 @@
 var express = require("express"); //note: needs npm install 
 var bodyParser = require("body-parser");  //note: needs npm install
-var path = require('path');  //note: built in to node
+var path = require("path");  //note: built in to node
 
-var friendsData = require('./friends');
+var friendsData = require("./app/data/friends.js");
+//var apiRoutes = require("./app/routing/api-routes.js");
+//var htmlRoutes = require("./app/routing/html-routes.js");
 
 var app = express();
 
@@ -15,18 +17,18 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({type: "application/vnd.api+json"}));
 
 app.use(express.static("public"));  //what does this do?
-//app.use(express.static("data")); 
+app.use(express.static("data")); 
 
 //html routes
 //...
-app.get("/", function (request, response){
-    console.log("server hit on '/'");
-    response.sendFile(path.join(__dirname, "./app/public/home.html"))
-});
-
 app.get("/survey", function (request, response){
     console.log("server hit on '/survey'");
     response.sendFile(path.join(__dirname, "./app/public/survey.html"))
+});
+
+app.get("/", function (request, response){
+    console.log("server hit on '/'");
+    response.sendFile(path.join(__dirname, "./app/public/home.html"))
 });
 
 //api routes
@@ -41,9 +43,11 @@ app.post("/api/friends", function(request, response){
     console.log("server hit with 'post' on '/api/friends'");
     //--take in form submisssions
     var userObj = request.body;
-    console.log(userObj);
+    //ensure the scores are converted from strings into numbers
+    for (var i = 0; i < userObj.scores.length; i++){
+        userObj.scores[i] = parseInt(userObj.scores[i]);
+    };
     var userScores = userObj.scores;
-    console.log("User scores:", userScores)
 
     //--compare the form submission to the friends already in the array
     //find the difference in score for all friends...
@@ -61,7 +65,7 @@ app.post("/api/friends", function(request, response){
     //find the index of the friend with the smallest difference...
     var friendMatchIndex = 0;  //this will hold the index of the friend with best match, start with friend[0]
     var friendMatchDifference = allDifferences[0]; //this will hold the difference for the friend with best match, start with difference of friend[0]
-    console.log("All differences:", allDifferences)
+    // console.log("All differences:", allDifferences)
     for (var i = 1; i < allDifferences.length; i++){ //loop through all the differences, starting with the second
         //update friendMatchIndex & FriendMatchDifference as appropriate...
         if (allDifferences[i] < friendMatchDifference){
@@ -70,10 +74,10 @@ app.post("/api/friends", function(request, response){
         };
     };
 
-    //--display a modal with the closest match
-    console.log("User's closest friend is:", friendsData[friendMatchIndex].name);
-    console.log("User's friend's picture is available at:", friendsData[friendMatchIndex].photo);
-    console.log("User's total difference from friend is:", friendMatchDifference);
+    // //--display a modal with the closest match
+    // console.log("User's closest friend is:", friendsData[friendMatchIndex].name);
+    // console.log("User's friend's picture is available at:", friendsData[friendMatchIndex].photo);
+    // console.log("User's total difference from friend is:", friendMatchDifference);
 
     //--add the form submission to the friends array
     friendsData.push(userObj);
