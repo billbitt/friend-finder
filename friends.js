@@ -17,13 +17,13 @@ var friends = [
     },
     {
         "name":"Bob",
-        "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+        "photo":"http://mp3waxx.com/wp-content/uploads/2013/04/bob-news-ariticle4113.jpg",
         "scores":[
-            4,
             2,
-            3,
+            2,
+            2,
             1,
-            5,
+            2,
             3,
             1,
             1,
