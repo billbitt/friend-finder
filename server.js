@@ -4,7 +4,7 @@ var path = require("path");  //note: built in to node
 
 var friendsData = require("./app/data/friends.js");
 //var apiRoutes = require("./app/routing/api-routes.js");
-//var htmlRoutes = require("./app/routing/html-routes.js");
+var htmlRoutes = require("./app/routing/html-routes.js");
 
 var app = express();
 
