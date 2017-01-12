@@ -13,14 +13,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="form-group">
+                <form action="" method="POST" role="form">
                     <h2>Survey Questions</h2>
                     <hr>
                     <h3>About You</h3>
-                    <h4>Name (Required)</h4>
-                        <input type="text" name="" id="name" class="form-control" required="">
-                    <h4>Link to Photo Image (Required)</h4>
-                        <input type="text" name="" id="photo" class="form-control" required="">
+                    <div class="form-group">
+                        <title for="name">Name (Required)</title>
+                        <input type="text" name="name" id="name" class="form-control" required="">
+                    </div>
+                    <div class="form-group">
+                        <title for="photo">Link to Photo Image (Required)</title>
+                        <input type="text" name="photo" id="photo" class="form-control" required="">
+                    </div>
                     <hr>
                     <h3>Question 1</h3>
                     <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
@@ -133,7 +137,7 @@
                             <option value="5">5 (strongly Agree)</option>
                         </select>
                     <button type="submit" class="btn btn-default">Submit</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -143,6 +147,5 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- JavaScript links -->
-    <script src="#" type="text/javascript"></script>
 </body>
 </html>
