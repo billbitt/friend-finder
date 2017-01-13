@@ -12,15 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type: "application/vnd.api+json"}));
 
-//app.use(express.static("public")); 
-//app.use(express.static("data")); 
-
 //html routes
-//...
 require("./app/routing/html-routes.js")(app);
 
 //api routes
-//...
 require("./app/routing/api-routes.js")(app);
 
 
